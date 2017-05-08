@@ -1,0 +1,117 @@
+\documentclass[%
+paper=a4,   % Papiergröße
+size=12pt,  % Schriftgröße
+draft=off   % Entwurfsmodus an/aus?
+]{scrartcl}
+
+% ----------------------------------------------------
+% Essential packages
+% ----------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ----------------------------------------------------
+% Fonts
+% ----------------------------------------------------
+\usepackage{lmodern}
+\usepackage{roboto}
+
+\setkomafont{subject}{\large\sffamily}
+\addtokomafont{title}{\LARGE}
+\addtokomafont{subtitle}{\large}
+\addtokomafont{author}{\large}
+\addtokomafont{publishers}{\large}
+
+% ----------------------------------------------------
+% Colors
+% ----------------------------------------------------
+\usepackage{graphicx}
+\usepackage[svgnames]{xcolor}
+\definecolor{darkgreen}{rgb}{0.23,0.46,0.23}
+
+% Publication quality tables
+\usepackage{booktabs}
+
+% ----------------------------------------------------
+% Commands for document metadata
+% ----------------------------------------------------
+\makeatletter
+\newcommand{\email}[1]{\gdef\@email{#1}}
+\newcommand{\matrno}[1]{\gdef\@matrno{#1}}
+\newcommand{\institute}[1]{\gdef\@institute{#1}}
+\makeatother
+
+\input{settings}
+
+% ----------------------------------------------------
+% Multi-lingual documents with Babel
+% ----------------------------------------------------
+\usepackage{csquotes}
+\usepackage[\languages]{babel}
+\usepackage{iflang}
+
+% ----------------------------------------------------
+% Hyperlinks in PDF documents
+% ----------------------------------------------------
+\usepackage[%
+colorlinks=true,        %
+linkcolor=blue,         %
+urlcolor=cyan,          %
+citecolor=red,          %
+raiselinks=true,        %
+bookmarks=true,         %
+bookmarksopenlevel=1,   %
+bookmarksopen=true,     %
+bookmarksnumbered=true, %
+hyperindex=true,        % 
+plainpages=false,       % correct hyperlinks
+pdfpagelabels=true      % view TeX pagenumber in PDF reader
+colorlinks=false,
+citecolor=black,
+]{hyperref} % erzeuge Hyperlinks z.B. für pdflatex
+
+% Provides a solution to the problem with hyperref that links
+% to floats actually anchor to the place below the float's caption,
+% instead of anchoring to the beginning of the float
+\usepackage[all]{hypcap}
+
+
+% ----------------------------------------------------
+% Code listings
+% ----------------------------------------------------
+\usepackage{listings}
+\lstset{%
+  basicstyle=\small\ttfamily,               % General font style for listings
+  keywordstyle=\bfseries,                   % Font style for keywords
+  commentstyle=\color{gray},                % Font style for comments
+  stringstyle={},                           % Font style for string literals
+  numbers=left,                             % Show line numbers
+  stepnumber=1,                             % Step increments for line numbers
+  numberstyle={\sffamily\tiny\color{gray}}, % Font style for line numbers
+  numbersep=2em,                            % Space between line numbers and code
+}
+
+\pagestyle{plain}
+
+% ----------------------------------------------------
+% Bibliography management
+% ----------------------------------------------------
+\usepackage[%
+backend=biber,
+natbib=true,
+citestyle=alphabetic,
+bibstyle=alphabetic
+]{biblatex}
+\addbibresource{literature.bib}
+
+% Use main body font for URLs in bibliography
+\urlstyle{same}
+
+% Intelligent cross-referencing
+% Note: Must be loaded at end of preamble (esp. after hyperref)
+\usepackage{cleveref}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Seminararbeit"
+%%% End:

@@ -1,140 +1,71 @@
-% Für Arbeiten auf Deutsch
-\documentclass[deutsch,oribibl,a4paper]{llncs}
-\usepackage{ngerman}
-\usepackage[utf8]{inputenc}
+\input{preamble}
 
-% Bitte bindet keine .eps-Dateinen als Bilder ein (do not use \usepackage{epsfig}!)
-\usepackage{graphicx}
-
-%Wer lieber mit Postscript-Ausgaben arbeitet, muss dieses Packet auskommentieren
-\usepackage[pdftex,
-						colorlinks=true, linkcolor=blue, urlcolor=cyan, citecolor=red,%
-						raiselinks=true,%
-            bookmarks=true,%
-            bookmarksopenlevel=1,%
-            bookmarksopen=true,%
-            bookmarksnumbered=true,%
-            hyperindex=true,% 
-            plainpages=false,% correct hyperlinks
-            pdfpagelabels=true%,% view TeX pagenumber in PDF reader
-            colorlinks=false,
-            citecolor=black,
-            %pdfborder={0 0 0.5}
-            ]{hyperref} % erzeuge Hyperlinks z.B. für pdflatex
-
-% Wer mit eigenen Farben arbeiten möchte
-\usepackage{color}
-\definecolor{darkgreen}{rgb}{0.23,0.46,0.23}
-
-% Mit diesem Package kann man sich elegant eigene Codeumgebungen definieren
-\usepackage{textcomp}
-\usepackage{listings} 
-\lstdefinelanguage{QVTrelation}{
-		%alsoletter={-,=},
-		morekeywords={transformation,key,top,relation,checkonly,enforce,domain,when,where,or,and},
-		tabsize=2,
-		frame=single,
-		upquote=true, % how the upper quotes are displayed '
-		%showspaces=true,
-		basicstyle=\ttfamily \scriptsize,
-		morecomment=[s][\color{darkgreen}]{/*}{*/},
-		%commentstyle=\color{green},
-    keywordstyle=\color{blue} \bfseries,
-    %language=XML,
-    escapeinside={\%}{\%},
-    numbers=left,  
-    numberfirstline=true,
-    firstnumber=1,
-    numberstyle=\scriptsize, 
-    numbersep=5pt
-    } 
-\lstnewenvironment{QVTrelation}[2]
-		{\lstset{language=QVTrelation, numbers=left, stepnumber=2, caption={#1}, label={#2}}}
-		{}   
-
-\pagestyle{plain}
 \begin{document}
+\include{titlepage}
 
-%Anpassen!
-\title{Bio-inspired \& Grid Computing I}
-\subtitle{Seminar Software Engineering verteilter Systeme\\ Sommersemester 2015}
+% Inhaltsverzeichnis ist nur für die Besprechungen.
+% Für die endgültige Abgabeversion auskommentieren.
+\tableofcontents
 
-\author{Holger Kasinger\\ Matrikelnummer: XXXXXXXX \\ \email{kasinger@informatik.uni-augsburg.de}}
-
-\institute{Betreuer: Chuck Norris\\ Professur Softwaremethodik für verteilte Systeme (Prof. Bauer)\\ Universität Augsburg}
-
-
-\maketitle
-
-%Ab hier beginnt die Schreibarbeit ...
-\begin{abstract}
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-\end{abstract}
-
-%Inhaltsverzeichnis ist nur für die Besprechungen. Für die endgültige Version auskommentieren.
-%\tableofcontents
-
-\newpage
-
+\clearpage
 \section{Einleitung}
 \label{sec:Einleitung}
-\cite{Konak2006,Sailer2013} and \cite{01_MW-Paper}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. \cite{Konak2006,Sailer2013}
 
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. \cite{01_MW-Paper}
 
 \section{Hauptteil}
 \label{sec:Hauptteil}
 
-TEXT
-
+Abbildungen können im Unterverzeichnis \texttt{figures} abgelegt werden.
+Eingebunden werden Sie mit dem Befehl \texttt{\textbackslash includegraphics} innerhalb
+einer \texttt{figure}-Umgebung:
 \begin{figure}[htb]
-	\centering
-		\includegraphics[width=0.75\textwidth]{power.png}
-	\caption{Beispielabbildung}
-	\label{fig:power}{}		
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/power.png}
+  \caption{Beispielabbildung (vgl. \cite{technet})}
+  \label{fig:power}
 \end{figure}
-
-TEXT
 
 \subsection{Erste Zwischenüberschrift}
 \label{sec:ErsteZwischenueberschrift}
-
-TEXT
-
-\begin{QVTrelation}{Ein Codebeispiel}{QVTlist1} 
-transformation MMa2MMb(ma:MMa; mb:MMb) {
-
-/* Dies ist ein Kommentar */
-
-	key MMb::Library{name}; 
-
-%$\Rightarrow$ mit \% kann man wieder in die normal Latex-Umgebung wechseln%
-	
-	top relation LibraryToLibrary {
-		n: String;
-		checkonly domain ma c:Library {name=n};
-		enforce domain mb c_:Library {name=n};
-	}
-	
-	top relation NovelToNovel {
-		i, n: String;
-		checkonly domain ma c:Novel {ns=l:Library{},name=n,index=i} ;
-		enforce domain mb c_:Novel {ns=l_:Library{},name=n,index=i} ;
-		when {
-			LibraryToLibrary(l,l_);
-		}		
-		where {
-			AuthorsToAuthors(c,c_);
-		}
-	}
-}
-\end{QVTrelation}
-
-TEXT
+Die Arbeit kann auch Tabellen im \texttt{table}-Environment enthalten:
+\begin{table}[ht]
+  \centering
+  \caption{Entfernungstabelle Süddeutschland}
+  \begin{tabular}{c r r r}
+    \toprule
+              & Augsburg & München & Stuttgart \\
+    \midrule
+    Augsburg  & -        & 61      & 149       \\
+    München   & 61       & -       & 210       \\
+    Stuttgart & 149      & 210     & -         \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:entfernungen}
+\end{table}
 
 \subsubsection{Erste Unterüberschrift}
 \label{sec:ErsteUnterueberschrift}
 
-TEXT
+Das \texttt{listings}-Paket erlaubt es, Quellcode mit Syntax-Highlighting einzubinden:
+
+\begin{center}
+  \begin{minipage}{.75\textwidth}
+\begin{lstlisting}[language=Python]
+def fact(n):
+    """Return the n-th factorial number"""
+    if n == 0:
+        return 1
+    else:
+        return n * fact(n-1)
+  
+# Test output
+print(fact(10))
+print "Done"
+\end{lstlisting}
+  \end{minipage}
+\end{center}
 
 \subsection{Zweite Zwischenüberschrift}
 \label{sec:ZweiteZwischenueberschrift}
@@ -146,12 +77,19 @@ TEXT
 
 TEXT
 
-%Bibliography
-\bibliographystyle{alpha}
-\bibliography{literature}
+% Literaturverzeichnis
+\printbibheading
 
+\IfLanguageName{ngerman}{\def\regularlit{Literatur}}{\def\regularlit{Literature}}
+\IfLanguageName{ngerman}{\def\onlinelit{Internet-Quellen}}{\def\onlinelit{Online resources}}
 
-% Alles was nicht direkt in die Arbeit soll (optional) und die Eidesstattliche Erklärung (anpassen!)
-\include{Appendix}
+\printbibliography[nottype=online,heading=subbibliography,title={\regularlit}]
+\printbibliography[type=online,heading=subbibliography,title={\onlinelit}]
+
+% Anhang
+\include{appendix}
+
+% Eidesstattliche Erklärung
+\include{aonesty}
 
 \end{document}

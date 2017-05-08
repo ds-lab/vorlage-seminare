@@ -1,0 +1,41 @@
+\IfLanguageName{ngerman}{\def\abstractname{Zusammenfassung}}{\def\abstractname{Abstract}}
+  
+\begin{titlepage}
+  \makeatletter
+  \phantom{Line}
+  \vspace{2em}
+  \begin{center}
+    \ifdefempty{\@subject}{}{%
+      {\usekomafont{subject}\@subject}
+      \par\vspace{3em}
+    }
+    {\usekomafont{title}\@title}
+    \ifdefempty{\@subtitle}{}{%
+      \par\vspace{.5em}
+      {\usekomafont{subtitle}\@subtitle}
+    }
+    \par\vspace{2em}
+    {\usekomafont{author}%
+      \@author\\
+      Matrikelnummer: \@matrno\\
+      \small\texttt{\@email}}
+    \par\vspace{1.5em}
+    {\usekomafont{publishers}%
+      \@publishers}
+  \end{center}
+  \makeatother
+  \begin{abstract}
+    \noindent%
+    \paragraph*{\abstractname}
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+  \end{abstract}
+
+  \vfill
+  \centering
+  \includegraphics[height=40mm]{figures/uni_siegel}
+  \vspace{2em}
+\end{titlepage}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Seminararbeit"
+%%% End:
