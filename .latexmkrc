@@ -18,5 +18,5 @@ push @generated_exts, 'acn', 'acr', 'alg';
 # Lists of things
 push @generated_exts, 'loa', 'lol';
 
-$clean_ext .= '%R.bbl %R.ist %R.xdy';
+$clean_ext .= '%R.bbl %R.ist %R.xdy %R.run.xml';
 $cleanup_includes_generated = 1;
