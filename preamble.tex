@@ -1,7 +1,8 @@
 \documentclass[%
-paper=a4,   % Papiergröße
-size=12pt,  % Schriftgröße
-draft=off   % Entwurfsmodus an/aus?
+12pt,                % Schriftgröße
+paper=a4,            % Papiergröße
+draft=off,           % Entwurfsmodus an/aus?
+captions=tableabove, % Beschriftungen für Tabellen oberhalb
 ]{scrartcl}
 
 % ----------------------------------------------------
@@ -11,16 +12,26 @@ draft=off   % Entwurfsmodus an/aus?
 \usepackage[T1]{fontenc}
 
 % ----------------------------------------------------
+% Packages for layout adjustments
+% ----------------------------------------------------
+
+% Adjust line spacing
+\usepackage{setspace}
+
+% Publication quality tables
+\usepackage{booktabs}
+
+% ----------------------------------------------------
 % Fonts
 % ----------------------------------------------------
 \usepackage{lmodern}
 \usepackage{roboto}
 
-\setkomafont{subject}{\large\sffamily}
+\setkomafont{subject}{\large\robotocondensed}
 \addtokomafont{title}{\LARGE}
-\addtokomafont{subtitle}{\large}
-\addtokomafont{author}{\large}
-\addtokomafont{publishers}{\large}
+\addtokomafont{subtitle}{\Large}
+\setkomafont{author}{\normalsize\robotocondensed}
+\addtokomafont{publishers}{\normalsize\robotocondensed}
 
 % ----------------------------------------------------
 % Colors
@@ -28,14 +39,25 @@ draft=off   % Entwurfsmodus an/aus?
 \usepackage{graphicx}
 \usepackage[svgnames]{xcolor}
 \definecolor{darkgreen}{rgb}{0.23,0.46,0.23}
-
-% Publication quality tables
-\usepackage{booktabs}
+\definecolor{smdsblue}{RGB}{0,69,134}
 
 % ----------------------------------------------------
-% Commands for document metadata
+% Internal commands
 % ----------------------------------------------------
+
+\usepackage{etoolbox}
 \makeatletter
+\newcommand{\seminartype}[2]{%
+  \subject{%
+    Seminar \textit{\GetTranslationWarn{seminar@#1}}\\
+    #2
+  }
+}
+\newcommand{\advisor}[1]{%
+  \publishers{%
+    \GetTranslation{advisor}: #1\\
+    \GetTranslation{institute}}
+}
 \newcommand{\email}[1]{\gdef\@email{#1}}
 \newcommand{\matrno}[1]{\gdef\@matrno{#1}}
 \newcommand{\institute}[1]{\gdef\@institute{#1}}
@@ -48,39 +70,47 @@ draft=off   % Entwurfsmodus an/aus?
 % ----------------------------------------------------
 \usepackage{csquotes}
 \usepackage[\languages]{babel}
-\usepackage{iflang}
 
 % ----------------------------------------------------
 % Hyperlinks in PDF documents
 % ----------------------------------------------------
 \usepackage[%
-colorlinks=true,        %
-linkcolor=blue,         %
-urlcolor=cyan,          %
-citecolor=red,          %
-raiselinks=true,        %
 bookmarks=true,         %
 bookmarksopenlevel=1,   %
 bookmarksopen=true,     %
 bookmarksnumbered=true, %
-hyperindex=true,        % 
 plainpages=false,       % correct hyperlinks
-pdfpagelabels=true      % view TeX pagenumber in PDF reader
-colorlinks=false,
-citecolor=black,
-]{hyperref} % erzeuge Hyperlinks z.B. für pdflatex
+pdfpagelabels=true,     % view TeX pagenumber in PDF reader
+colorlinks=true,        % color highlight links
+allcolors=black,        % make all links black by default
+urlcolor=smdsblue,      % URL color
+]{hyperref}
+
+\makeatletter
+\AtEndPreamble{
+  \hypersetup{
+    pdftitle=\@title,
+    pdfauthor=\@author
+  }
+}
+\makeatother
 
 % Provides a solution to the problem with hyperref that links
 % to floats actually anchor to the place below the float's caption,
 % instead of anchoring to the beginning of the float
 \usepackage[all]{hypcap}
 
-
 % ----------------------------------------------------
 % Code listings
 % ----------------------------------------------------
 \usepackage{listings}
 \lstset{%
+  frame=single,                             % Add a single line frame around listings
+  frameround=ftft,                          % Rounded frame corners on top left and bottom right
+  backgroundcolor=\color{gray!5},           % Slight gray shade for listings
+  rulecolor=\color{black!30},               % Gray frame outline
+  xleftmargin=.125\textwidth,               % Extra left margin
+  xrightmargin=.125\textwidth,              % Extra right margin
   basicstyle=\small\ttfamily,               % General font style for listings
   keywordstyle=\bfseries,                   % Font style for keywords
   commentstyle=\color{gray},                % Font style for comments
@@ -91,16 +121,15 @@ citecolor=black,
   numbersep=2em,                            % Space between line numbers and code
 }
 
-\pagestyle{plain}
-
 % ----------------------------------------------------
 % Bibliography management
 % ----------------------------------------------------
 \usepackage[%
-backend=biber,
-natbib=true,
-citestyle=alphabetic,
-bibstyle=alphabetic
+backend=biber,      % Use biber to process bibliographies
+natbib=true,        % Provide natbib-compatible citation commands
+sorting=none,       % Sort citations by occurrence in the document
+style=numeric-comp, % Use compressed numeric citations, e.g. [1-3; 5]
+block=space,        % Add a little spacing inside bibliography entries
 ]{biblatex}
 \addbibresource{literature.bib}
 
@@ -110,6 +139,47 @@ bibstyle=alphabetic
 % Intelligent cross-referencing
 % Note: Must be loaded at end of preamble (esp. after hyperref)
 \usepackage{cleveref}
+
+% ----------------------------------------------------
+% Localization / translations
+% ----------------------------------------------------
+\usepackage{translations}
+
+% Translations for seminar names
+\NewTranslation{ngerman}{seminar@SEvS}{Software Engineering für verteilte Systeme}
+\NewTranslationFallback{seminar@SEvS}{Software Engineering for Distributed Systems}
+\NewTranslationFallback{seminar@AvioSE}{Avionic Software Engineering}
+\NewTranslationFallback{seminar@AutoSE}{Automotive Software Engineering}
+\NewTranslationFallback{seminar@MIS}{Medical Information Sciences}
+
+% Generic translation used in template
+\NewTranslation{ngerman}{advisor}{Betreuer}
+\NewTranslation{ngerman}{matrno}{Matrikelnummer}
+\NewTranslation{ngerman}{institute}{Softwaremethodik für verteilte Systeme (Prof. Bauer)\\Universität Augsburg}
+\NewTranslation{ngerman}{regularlit}{Literatur}
+\NewTranslation{ngerman}{onlinelit}{Online-Quellen}
+\NewTranslation{ngerman}{honesty@title}{Eidesstattliche Erklärung}
+\NewTranslation{ngerman}{honesty@body}{%
+  Ich versichere, dass ich die vorliegende Arbeit ohne fremde Hilfe und ohne Benutzung anderer
+  als der angegebenen Quellen angefertigt habe, und dass die Arbeit in gleicher oder ähnlicher
+  Form noch keiner anderen Prüfungsbehörde vorgelegen hat.\endgraf
+  Alle Ausführungen der Arbeit, die wörtlich oder sinngemäß übernommen wurden, sind als solche
+  gekennzeichnet.
+}
+
+% English fallback text
+\NewTranslationFallback{advisor}{Advisor}
+\NewTranslationFallback{matrno}{Matriculation number}
+\NewTranslationFallback{institute}{Software Methodologies for Distributed Systems (Prof. Bauer)\\University of Augsburg}
+\NewTranslationFallback{regularlit}{Literature}
+\NewTranslationFallback{onlinelit}{Online resources}
+\NewTranslationFallback{honesty@title}{Declaration of Academic Honesty}
+\NewTranslationFallback{honesty@body}{%
+  Hereby, I declare that I have composed the presented paper independently on my own and without
+  any other resources than the ones indicated. All thoughts taken directly or indirectly from external
+  sources are properly denoted as such.\endgraf
+  This paper has neither been previously submitted to another authority nor has it been published yet.
+}
 
 %%% Local Variables:
 %%% mode: latex

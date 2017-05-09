@@ -1,13 +1,11 @@
-\IfLanguageName{ngerman}{\def\abstractname{Zusammenfassung}}{\def\abstractname{Abstract}}
-  
 \begin{titlepage}
+  \onehalfspacing
   \makeatletter
-  \phantom{Line}
-  \vspace{2em}
+  \vspace*{1em}
   \begin{center}
     \ifdefempty{\@subject}{}{%
       {\usekomafont{subject}\@subject}
-      \par\vspace{3em}
+      \par\vspace{2em}
     }
     {\usekomafont{title}\@title}
     \ifdefempty{\@subtitle}{}{%
@@ -15,15 +13,16 @@
       {\usekomafont{subtitle}\@subtitle}
     }
     \par\vspace{2em}
+    \singlespacing
     {\usekomafont{author}%
-      \@author\\
-      Matrikelnummer: \@matrno\\
-      \small\texttt{\@email}}
+      \@author\par
+      \GetTranslation{matrno}: \@matrno\par
+      \texttt{\@email}}
     \par\vspace{1.5em}
-    {\usekomafont{publishers}%
-      \@publishers}
+    {\usekomafont{publishers}\@publishers}
   \end{center}
   \makeatother
+
   \begin{abstract}
     \noindent%
     \paragraph*{\abstractname}
@@ -32,8 +31,7 @@
 
   \vfill
   \centering
-  \includegraphics[height=40mm]{figures/uni_siegel}
-  \vspace{2em}
+  \includegraphics[height=38mm]{figures/uni_siegel}
 \end{titlepage}
 %%% Local Variables:
 %%% mode: latex

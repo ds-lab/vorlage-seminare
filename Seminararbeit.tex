@@ -12,7 +12,7 @@
 \label{sec:Einleitung}
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. \cite{Konak2006,Sailer2013}
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. \cite{01_MW-Paper}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
 
 \section{Hauptteil}
 \label{sec:Hauptteil}
@@ -22,8 +22,8 @@ Eingebunden werden Sie mit dem Befehl \texttt{\textbackslash includegraphics} in
 einer \texttt{figure}-Umgebung:
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.8\textwidth]{figures/power.png}
-  \caption{Beispielabbildung (vgl. \cite{technet})}
+  \includegraphics[width=0.8\textwidth]{figures/mda_transformations.png}
+  \caption{MDA-Transformationen (Abbildung~5.19 in \cite{sommerville})}
   \label{fig:power}
 \end{figure}
 
@@ -32,7 +32,7 @@ einer \texttt{figure}-Umgebung:
 Die Arbeit kann auch Tabellen im \texttt{table}-Environment enthalten:
 \begin{table}[ht]
   \centering
-  \caption{Entfernungstabelle Süddeutschland}
+  \caption{Entfernungstabelle Süddeutschland, vgl. \cite{entfernungstabelle}}
   \begin{tabular}{c r r r}
     \toprule
               & Augsburg & München & Stuttgart \\
@@ -50,9 +50,7 @@ Die Arbeit kann auch Tabellen im \texttt{table}-Environment enthalten:
 
 Das \texttt{listings}-Paket erlaubt es, Quellcode mit Syntax-Highlighting einzubinden:
 
-\begin{center}
-  \begin{minipage}{.75\textwidth}
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python,float=ht,caption={Python-Programm zur Berechnung der Fakultätsfunktion}]
 def fact(n):
     """Return the n-th factorial number"""
     if n == 0:
@@ -61,12 +59,11 @@ def fact(n):
         return n * fact(n-1)
   
 # Test output
-print(fact(10))
+print fact(10)
 print "Done"
 \end{lstlisting}
-  \end{minipage}
-\end{center}
-
+\label{lst:factorial}  
+  
 \subsection{Zweite Zwischenüberschrift}
 \label{sec:ZweiteZwischenueberschrift}
 
@@ -78,18 +75,12 @@ TEXT
 TEXT
 
 % Literaturverzeichnis
-\printbibheading
-
-\IfLanguageName{ngerman}{\def\regularlit{Literatur}}{\def\regularlit{Literature}}
-\IfLanguageName{ngerman}{\def\onlinelit{Internet-Quellen}}{\def\onlinelit{Online resources}}
-
-\printbibliography[nottype=online,heading=subbibliography,title={\regularlit}]
-\printbibliography[type=online,heading=subbibliography,title={\onlinelit}]
+\printbibliography[heading=bibintoc]
 
 % Anhang
 \include{appendix}
 
 % Eidesstattliche Erklärung
-\include{aonesty}
+\include{honesty}
 
 \end{document}

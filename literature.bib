@@ -1,8 +1,31 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% --- Hinweise zur Literaturverwaltung ---
+% 
+% Das Template verwendet Biblatex zur Verwaltung des
+% Literaturverzeichnisses. Im Vergleich zu Bibtex stehen
+% deswegen einige zusätzliche Features zur Verfügung.
+%
+% Die wichtigsten Typen von Einträgen:
+%   - @article         Reguläre (Journal-)Paper
+%   - @inproceedings   Paper in Konferenz-Proceedings
+%   - @book            Bücher
+%   - @online          Internet-Quellen (über das urldate-Feld
+%                        kann das Abrufdatum spezifiziert werden)
+%
+%
+% Die offizielle Dokumentation des Biblatex-Pakets enthält eine
+% vollständige Liste aller erlaubten Eintrags-Typen. Sie ist
+% unter der folgenden URL zu finden:
+%     http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 @article{Konak2006,
   author =		 {Konak, A. and Coit, D. W. and Smith, A. E.},
   doi =			 {10.1016/j.ress.2005.11.018},
   issn =		 {09518320},
-  journal =		 {Reliability Engineering \& System Safety},
+  journaltitle = {Reliability Engineering \& System Safety},
   month =		 sep,
   number =		 {9},
   pages =		 {992--1007},
@@ -17,30 +40,24 @@
                   processors within AUTOSAR},
   author =		 {Sailer, A. and Schmidhuber, S. and Deubzer, M. and
                   Alfranseder, M. and Mucha, M. and Mottok, J.},
-  booktitle =	 {Applied Electronics (AE), 2013 International
-                  Conference on},
+  booktitle =	 {2013 International Conference on Applied Electronics (AE)},
   pages =		 {1--6},
   year =		 {2013},
   organization = {IEEE}
 }
 
-@inproceedings{01_MW-Paper,
-  author =		 {Kienberger, J. and Minnerup, P. and Kuntz, S. and
-                  Bauer, B.},
-  title =		 {{Analysis and Validation of AUTOSAR Models}},
-  booktitle =	 {Proceedings of the 2nd International Conference on
-                  Model-Driven Engineering and Software Development},
-  year =		 {2014},
-  date =		 {2014/01/09},
-  eventtitle =	 {MODELSWARD 2014},
-  eventdate =	 {7th to 9th January, 2014},
-  venue =		 {Lisbon, Portugal}
+@Book{sommerville,
+  author =		 {Sommerville, Ian},
+  title =		 {Software Engineering},
+  year =		 2011,
+  edition =		 9,
+  publisher =	 {Addison-Wesley},
+  isbn =		 {978-0-13-703515-1}
 }
 
-@Online{technet,
-  author =		 {Microsoft Corporation},
-  title =		 {TechNet Library},
+@Online{entfernungstabelle,
+  title =		 {Entfernungstabelle -- Entfernungstabelle für 40 Deutsche Städte},
   year =		 2017,
-  url =			 {https://technet.microsoft.com/library/}
+  url =			 {http://www.auslandversicherungen.de/entfernungstabelle.html},
+  urldate =		 {2017-05-09}
 }
-
